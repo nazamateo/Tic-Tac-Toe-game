@@ -1,7 +1,10 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Merienda+One&display=swap');
 
-display: block;
-height: 100vh;
+body {
+
+    display: block;
+    height: 100vh;
+
     .board {
         position: relative;
         top: 10vh;
@@ -16,23 +19,39 @@ height: 100vh;
         background-color: black;
 
         .cell {
+            cursor: pointer;
             border-style: solid;
             border-color: white;
             border-width: 2px;
+            color: white;
+            font-family: 'Merienda One', cursive;
+            font-size: 6vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        #a, #b, #c{
+        #i0j0,
+        #i0j1,
+        #i0j2 {
             border-top: 0px;
         }
-        #a, #d, #g{
+
+        #i0j0,
+        #i1j0,
+        #i2j0 {
             border-left: 0px;
         }
 
-        #g, #h, #i{
+        #i2j0,
+        #i2j1,
+        #i2j2 {
             border-bottom: 0px;
         }
 
-        #c, #f, #i{
+        #i0j2,
+        #i1j2,
+        #i2j2 {
             border-right: 0px;
         }
     }
@@ -59,11 +78,13 @@ height: 100vh;
             justify-content: center;
 
             text-align: center;
+
             p {
                 font-size: larger;
                 color: white;
             }
-            h1{
+
+            h1 {
                 font-size: 5vh;
                 color: pink;
 
