@@ -1,0 +1,73 @@
+body{
+
+display: block;
+height: 100vh;
+    .board {
+        position: relative;
+        top: 10vh;
+        display: grid;
+        width: 30vw;
+        height: 30vw;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-content: stretch;
+        align-content: stretch;
+        margin: auto;
+        background-color: black;
+
+        .cell {
+            border-style: solid;
+            border-color: white;
+            border-width: 2px;
+        }
+
+        #a, #b, #c{
+            border-top: 0px;
+        }
+        #a, #d, #g{
+            border-left: 0px;
+        }
+
+        #g, #h, #i{
+            border-bottom: 0px;
+        }
+
+        #c, #f, #i{
+            border-right: 0px;
+        }
+    }
+
+    .user {
+        position: relative;
+        top: 11vh;
+        display: grid;
+        width: 25vw;
+        height: 8vw;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: (1fr);
+        justify-content: stretch;
+        align-content: stretch;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+
+
+
+        .scorecontainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            text-align: center;
+            p {
+                font-size: larger;
+                color: white;
+            }
+            h1{
+                font-size: 5vh;
+                color: pink;
+
+            }
+        }
+    }
+}
