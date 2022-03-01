@@ -24,21 +24,27 @@
         <div class="cell" id="i2j2" onclick="gamecell()"></div>
     </section>
 
-    <section class="user">
+    <section class="scoreboard">
         <div class="scorecontainer" id="player1">
             <p>P1 (<span id="p1"></span>)</p>
-            <h1 class="score">10</h1>
+            <h1 class="score1" id="score1"></h1>
         </div>
         <div class="scorecontainer" id="tie">
             <p>TIE</p>
-            <h1 class="score">5</h1>
+            <h1 class="score" id="scoretie"></h1>
         </div>
         <div class="scorecontainer" id="player2">
             <p>P2 (<span id="p2"></span>)</p>
-            <h1 class="score">0</h1>
+            <h1 class="score2" id="score2"></h1>
         </div>
+    </section>
 
-        
+    <section class="buttons">
+    <br><button class="button" id="reset" onclick="gameReset()">NEW GAME</button><br>
+    <button class="button" id="clearscore" onclick="clearScore()">RESET SCORE</button><br>
+    <button class="button" id="previous" onclick="">prev</button><br>
+    <button class="button" id="next" onclick="">next</button><br>
+
     </section>
 
     <script src="scripts/index.js" async defer></script>

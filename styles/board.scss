@@ -56,9 +56,10 @@ body {
         }
     }
 
-    .user {
+    .scoreboard {
         position: relative;
-        top: 11vh;
+        bottom: 20vh;
+        right: 35vw;
         display: grid;
         width: 25vw;
         height: 8vw;

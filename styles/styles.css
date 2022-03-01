@@ -49,9 +49,10 @@ body .board #i1j2,
 body .board #i2j2 {
   border-right: 0px;
 }
-body .user {
+body .scoreboard {
   position: relative;
-  top: 11vh;
+  bottom: 20vh;
+  right: 35vw;
   display: grid;
   width: 25vw;
   height: 8vw;
@@ -63,17 +64,17 @@ body .user {
   margin-right: auto;
   background-color: white;
 }
-body .user .scorecontainer {
+body .scoreboard .scorecontainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
-body .user .scorecontainer p {
+body .scoreboard .scorecontainer p {
   font-size: larger;
   color: white;
 }
-body .user .scorecontainer h1 {
+body .scoreboard .scorecontainer h1 {
   font-size: 5vh;
   color: pink;
 }
@@ -141,6 +142,31 @@ p, h1, h2, h3, h4, h5, h6 {
 */
 #root, #__next {
   isolation: isolate;
+}
+
+.buttons {
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+  display: block;
+  width: 10vw;
+  height: auto;
+}
+.buttons #reset, .buttons #clearscore, .buttons #previous, .buttons #next {
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  color: white;
+}
+.buttons #previous {
+  position: fixed;
+  bottom: 20vh;
+  left: 40vw;
+}
+.buttons #next {
+  position: fixed;
+  bottom: 20vh;
+  left: 57vw;
 }
 
 /*# sourceMappingURL=styles.css.map */

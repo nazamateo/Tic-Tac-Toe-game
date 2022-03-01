@@ -1,0 +1,27 @@
+.buttons{
+    position: absolute;
+    top:10vh;
+    left: 10vw;
+    display: block;
+    width: 10vw;
+    height: auto;
+    //background-color: pink;
+    #reset, #clearscore, #previous, #next{
+        display: block;
+        margin: auto;
+        cursor: pointer;
+        color: white;
+    }
+
+    #previous{
+        position: fixed;
+        bottom: 20vh;
+        left: 40vw;
+    }
+
+    #next{
+        position: fixed;
+        bottom: 20vh;
+        left: 57vw;
+    }
+}
