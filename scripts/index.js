@@ -38,20 +38,27 @@ function gamecell() {
             }
             movecounter++
             clicked.innerHTML = move
-            var cellid = clicked.id
-            console.log(cellid)
+           var cellid = clicked.id
             var cellidi = cellid.charAt(1)
+var cellidinum = parseInt(cellidi)
             console.log(cellidi)
+            console.log(cellidinum)
             var cellidj = cellid.charAt(3)
+            var cellidjnum = parseInt(cellidj)
             console.log(cellidj)
+            console.log(cellidjnum)
+
+
             console.log(`movecounter: ${movecounter}`)
-            /* for(var i = 0; i < moves.length; i++) {
-                 for(var j = 0; j < moves[i].length; j++) {
-                     var cellid = clicked.innerHTML.id
-                     
-                     console.log(moves[i][j]);
-                 }
-             }*/
+            for (var i = 0; i < moves.length; i++) {
+                for (var j = 0; j < moves[i].length; j++) {
+                    if(i===cellidinum && j===cellidjnum){
+                    moves[i][j]=move
+                    console.log(moves[i][j])
+                    }
+
+                }
+            }
         }
 
         console.log(moves)
