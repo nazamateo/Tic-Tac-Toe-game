@@ -14,12 +14,14 @@
     }
 
     #previous{
+      display: none;
         position: fixed;
         bottom: 20vh;
         left: 40vw;
     }
 
     #next{
+      display: none;
         position: fixed;
         bottom: 20vh;
         left: 57vw;

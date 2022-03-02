@@ -159,11 +159,13 @@ p, h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 .buttons #previous {
+  display: none;
   position: fixed;
   bottom: 20vh;
   left: 40vw;
 }
 .buttons #next {
+  display: none;
   position: fixed;
   bottom: 20vh;
   left: 57vw;
