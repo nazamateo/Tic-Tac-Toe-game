@@ -40,12 +40,30 @@ function displayH() {
     prevvv.style.display = "block"
     nexxx.style.display = "block"
     console.log("displayme")
+    a.textContent = moves[0][0]
+    b.textContent = moves[0][1]
+    c.textContent = moves[0][2]
+    d.textContent = moves[1][0]
+    e.textContent = moves[1][1]
+    f.textContent = moves[1][2]
+    g.textContent = moves[2][0]
+    h.textContent = moves[2][1]
+    i.textContent = moves[2][2]
 }
 
 function hideH(){
     prevvv.style.display = "none"
     nexxx.style.display = "none"
     console.log("imhidden")
+    a.textContent = moves[0][0]
+    b.textContent = moves[0][1]
+    c.textContent = moves[0][2]
+    d.textContent = moves[1][0]
+    e.textContent = moves[1][1]
+    f.textContent = moves[1][2]
+    g.textContent = moves[2][0]
+    h.textContent = moves[2][1]
+    i.textContent = moves[2][2]
 }
 
 
@@ -59,6 +77,8 @@ function winnerO() {
     document.getElementById("scoretie").innerHTML = scoretie
 
     //display prev and next function
+    var displayArray = (moveshistory.length) - 1//8
+    hcounter = JSON.parse(JSON.stringify(displayArray))//8
     displayH()
 }
 
@@ -71,6 +91,8 @@ function winnerX() {
     document.getElementById("scoretie").innerHTML = scoretie
 
     //display prev and next function
+    var displayArray = (moveshistory.length) - 1//8
+    hcounter = JSON.parse(JSON.stringify(displayArray))//8
     displayH()
 }
 
@@ -144,6 +166,8 @@ function gameWinner() {
         document.getElementById("score1").innerHTML = score1
         document.getElementById("score2").innerHTML = score2
         //display prev and next function
+        var displayArray = (moveshistory.length) - 1//8
+        hcounter = JSON.parse(JSON.stringify(displayArray))//8
         displayH()
     }
 }
@@ -231,18 +255,41 @@ function clearScore() {
     document.getElementById("score2").innerHTML = score2
 }
 
-var displayArray = (moveshistory.length) - 1
-hcounter = JSON.parse(JSON.stringify(displayArray))
-console.log(typeof hcounter)
-console.log(hcounter)
+
+
+
 
 
 function prev() {
+    
     hcounter--
+    a.textContent = moveshistory[hcounter][0][0]
+    b.textContent = moveshistory[hcounter][0][1]
+    c.textContent = moveshistory[hcounter][0][2]
+    d.textContent = moveshistory[hcounter][1][0]
+    e.textContent = moveshistory[hcounter][1][1]
+    f.textContent = moveshistory[hcounter][1][2]
+    g.textContent = moveshistory[hcounter][2][0]
+    h.textContent = moveshistory[hcounter][2][1]
+    i.textContent = moveshistory[hcounter][2][2]
+    console.log(typeof hcounter)
+console.log(hcounter)//8
     console.log(`this will be displayed ${moveshistory[hcounter]}`)
 }
 
 function nexx() {
+  
     hcounter++
+    a.textContent = moveshistory[hcounter][0][0]
+    b.textContent = moveshistory[hcounter][0][1]
+    c.textContent = moveshistory[hcounter][0][2]
+    d.textContent = moveshistory[hcounter][1][0]
+    e.textContent = moveshistory[hcounter][1][1]
+    f.textContent = moveshistory[hcounter][1][2]
+    g.textContent = moveshistory[hcounter][2][0]
+    h.textContent = moveshistory[hcounter][2][1]
+    i.textContent = moveshistory[hcounter][2][2]
+    console.log(typeof hcounter)
+    console.log(hcounter)//8
     console.log(`this will be displayed ${moveshistory[hcounter]}`)
 }
