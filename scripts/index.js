@@ -1,7 +1,13 @@
 var moves = [
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "]
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+]
+
+var historylist = [
+    ["top-left", "top-mid", "top-right"],
+    ["center-left", "center", "center-right"],
+    ["bottom-left", "bottom-center", "bottom-right"]
 ]
 
 var moveshistory = []
@@ -16,6 +22,9 @@ console.log(prevvv)
 var nexxx = document.getElementById("next")
 console.log(nexxx)
 
+var undo = document.getElementById("undo")
+var redo = document.getElementById("redo")
+
 var a = document.getElementById("i0j0")
 var b = document.getElementById("i0j1")
 var c = document.getElementById("i0j2")
@@ -26,32 +35,26 @@ var g = document.getElementById("i2j0")
 var h = document.getElementById("i2j1")
 var i = document.getElementById("i2j2")
 
-a.onclick=gamecell()
-b.onclick=gamecell()
-c.onclick=gamecell()
-d.onclick=gamecell()
-e.onclick=gamecell()
-f.onclick=gamecell()
-g.onclick=gamecell()
-h.onclick=gamecell()
-i.onclick=gamecell()
+a.onclick = gamecell()
+b.onclick = gamecell()
+c.onclick = gamecell()
+d.onclick = gamecell()
+e.onclick = gamecell()
+f.onclick = gamecell()
+g.onclick = gamecell()
+h.onclick = gamecell()
+i.onclick = gamecell()
+
 
 function displayH() {
     prevvv.style.display = "block"
     nexxx.style.display = "block"
+    redo.style.display = "none"
+    undo.style.display = "none"
     console.log("displayme")
-    a.textContent = moves[0][0]
-    b.textContent = moves[0][1]
-    c.textContent = moves[0][2]
-    d.textContent = moves[1][0]
-    e.textContent = moves[1][1]
-    f.textContent = moves[1][2]
-    g.textContent = moves[2][0]
-    h.textContent = moves[2][1]
-    i.textContent = moves[2][2]
 }
 
-function hideH(){
+function hideH() {
     prevvv.style.display = "none"
     nexxx.style.display = "none"
     console.log("imhidden")
@@ -77,8 +80,8 @@ function winnerO() {
     document.getElementById("scoretie").innerHTML = scoretie
 
     //display prev and next function
-    var displayArray = (moveshistory.length) - 1//8
-    hcounter = JSON.parse(JSON.stringify(displayArray))//8
+    var displayArray = (moveshistory.length) - 1 //8
+    hcounter = JSON.parse(JSON.stringify(displayArray)) //8
     displayH()
 }
 
@@ -91,8 +94,8 @@ function winnerX() {
     document.getElementById("scoretie").innerHTML = scoretie
 
     //display prev and next function
-    var displayArray = (moveshistory.length) - 1//8
-    hcounter = JSON.parse(JSON.stringify(displayArray))//8
+    var displayArray = (moveshistory.length) - 1 //8
+    hcounter = JSON.parse(JSON.stringify(displayArray)) //8
     displayH()
 }
 
@@ -166,8 +169,8 @@ function gameWinner() {
         document.getElementById("score1").innerHTML = score1
         document.getElementById("score2").innerHTML = score2
         //display prev and next function
-        var displayArray = (moveshistory.length) - 1//8
-        hcounter = JSON.parse(JSON.stringify(displayArray))//8
+        var displayArray = (moveshistory.length) - 1 //8
+        hcounter = JSON.parse(JSON.stringify(displayArray)) //8
         displayH()
     }
 }
@@ -213,7 +216,12 @@ function gamecell() {
                         moves[i][j] = move
                         console.log(moves[i][j])
                         console.log(moves)
-
+                        const newP = document.createElement("p")
+                        newP.textContent = `${movecounter-1}. ${move} @ ${historylist[i][j]}`
+                        console.log(newP)
+                        const hist = document.getElementById("history")
+                        console.log(hist)
+                        hist.appendChild(newP)
                         ///save current gameboard into array
                         moveshistory.push(JSON.parse(JSON.stringify(moves)))
                         console.log(moveshistory)
@@ -233,6 +241,7 @@ function gameReset() {
         ["", "", ""],
         ["", "", ""]
     ]
+    moveshistory = []
     movecounter = 1
     a.textContent = ""
     b.textContent = ""
@@ -243,6 +252,8 @@ function gameReset() {
     g.textContent = ""
     h.textContent = ""
     i.textContent = ""
+    const hist = document.getElementById("history")
+    hist.innerHTML = ""
     hideH()
 }
 
@@ -255,41 +266,42 @@ function clearScore() {
     document.getElementById("score2").innerHTML = score2
 }
 
-
-
-
-
-
 function prev() {
-    
-    hcounter--
-    a.textContent = moveshistory[hcounter][0][0]
-    b.textContent = moveshistory[hcounter][0][1]
-    c.textContent = moveshistory[hcounter][0][2]
-    d.textContent = moveshistory[hcounter][1][0]
-    e.textContent = moveshistory[hcounter][1][1]
-    f.textContent = moveshistory[hcounter][1][2]
-    g.textContent = moveshistory[hcounter][2][0]
-    h.textContent = moveshistory[hcounter][2][1]
-    i.textContent = moveshistory[hcounter][2][2]
-    console.log(typeof hcounter)
-console.log(hcounter)//8
-    console.log(`this will be displayed ${moveshistory[hcounter]}`)
+    if (hcounter === 0) {
+        alert("invalid")
+    } else {
+        hcounter--
+        a.textContent = moveshistory[hcounter][0][0]
+        b.textContent = moveshistory[hcounter][0][1]
+        c.textContent = moveshistory[hcounter][0][2]
+        d.textContent = moveshistory[hcounter][1][0]
+        e.textContent = moveshistory[hcounter][1][1]
+        f.textContent = moveshistory[hcounter][1][2]
+        g.textContent = moveshistory[hcounter][2][0]
+        h.textContent = moveshistory[hcounter][2][1]
+        i.textContent = moveshistory[hcounter][2][2]
+        console.log(typeof hcounter)
+        console.log(hcounter) //8
+        console.log(`this will be displayed ${moveshistory[hcounter]}`)
+    }
 }
 
 function nexx() {
-  
-    hcounter++
-    a.textContent = moveshistory[hcounter][0][0]
-    b.textContent = moveshistory[hcounter][0][1]
-    c.textContent = moveshistory[hcounter][0][2]
-    d.textContent = moveshistory[hcounter][1][0]
-    e.textContent = moveshistory[hcounter][1][1]
-    f.textContent = moveshistory[hcounter][1][2]
-    g.textContent = moveshistory[hcounter][2][0]
-    h.textContent = moveshistory[hcounter][2][1]
-    i.textContent = moveshistory[hcounter][2][2]
-    console.log(typeof hcounter)
-    console.log(hcounter)//8
-    console.log(`this will be displayed ${moveshistory[hcounter]}`)
+    if (hcounter === (moveshistory.length - 1)) {
+        alert("invalid")
+    } else {
+        hcounter++
+        a.textContent = moveshistory[hcounter][0][0]
+        b.textContent = moveshistory[hcounter][0][1]
+        c.textContent = moveshistory[hcounter][0][2]
+        d.textContent = moveshistory[hcounter][1][0]
+        e.textContent = moveshistory[hcounter][1][1]
+        f.textContent = moveshistory[hcounter][1][2]
+        g.textContent = moveshistory[hcounter][2][0]
+        h.textContent = moveshistory[hcounter][2][1]
+        i.textContent = moveshistory[hcounter][2][2]
+        console.log(typeof hcounter)
+        console.log(hcounter) //8
+        console.log(`this will be displayed ${moveshistory[hcounter]}`)
+    }
 }

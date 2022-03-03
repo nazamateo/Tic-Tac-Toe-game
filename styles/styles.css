@@ -152,7 +152,7 @@ p, h1, h2, h3, h4, h5, h6 {
   width: 10vw;
   height: auto;
 }
-.buttons #reset, .buttons #clearscore, .buttons #previous, .buttons #next {
+.buttons #reset, .buttons #clearscore, .buttons #previous, .buttons #next, .buttons #undo, .buttons #redo {
   display: block;
   margin: auto;
   cursor: pointer;
@@ -166,6 +166,16 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 .buttons #next {
   display: none;
+  position: fixed;
+  bottom: 20vh;
+  left: 57vw;
+}
+.buttons #undo {
+  position: fixed;
+  bottom: 20vh;
+  left: 40vw;
+}
+.buttons #redo {
   position: fixed;
   bottom: 20vh;
   left: 57vw;
@@ -216,6 +226,20 @@ p, h1, h2, h3, h4, h5, h6 {
 .buttons .btn-default-toggle-ghost + [type=radio] + .btn-default-toggle-ghost {
   border-left: 0px;
   /*for removing the extra border between the buttons*/
+}
+
+.history {
+  position: absolute;
+  top: 10vh;
+  right: 10vw;
+  display: block;
+  width: 15vw;
+  height: 20vw;
+  margin: auto;
+  background-color: pink;
+}
+.history p {
+  color: cyan;
 }
 
 /*# sourceMappingURL=styles.css.map */
