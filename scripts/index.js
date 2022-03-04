@@ -124,6 +124,7 @@ function winnerO() {
     document.getElementById("score2").innerHTML = score2
     document.getElementById("scoretie").innerHTML = scoretie
 
+    draw()
     //display prev and next function
     var displayArray = (moveshistory.length) - 1 //8
     hcounter = JSON.parse(JSON.stringify(displayArray)) //8
@@ -138,6 +139,7 @@ function winnerX() {
     document.getElementById("score2").innerHTML = score2
     document.getElementById("scoretie").innerHTML = scoretie
 
+    draw()
     //display prev and next function
     var displayArray = (moveshistory.length) - 1 //8
     hcounter = JSON.parse(JSON.stringify(displayArray)) //8
@@ -149,94 +151,135 @@ function gameWinner() {
     //Horizontal
     if (moves[0][0] === moves[0][1] && moves[0][1] === moves[0][2]) {
         console.log(moves[0][0])
-startx = 0
+
+        if ((moves[0][0]) === "O") {
+            startx = 0
 starty = 88
 endx = 530
 endy = 88
-        if ((moves[0][0]) === "O") {
             winnerO()
         } else if ((moves[0][0]) === "X") {
+            startx = 0
+starty = 88
+endx = 530
+endy = 88
             winnerX()
         }
     } else if (moves[1][0] === moves[1][1] && moves[1][1] === moves[1][2]) {
         console.log(moves[1][0])
-        startx = 0
-starty = 265
-endx = 530
-endy = 265
+
         if ((moves[1][0]) === "O") {
+            startx = 0
+            starty = 265
+            endx = 530
+            endy = 265
             winnerO()
         } else if ((moves[1][0]) === "X") {
+            startx = 0
+            starty = 265
+            endx = 530
+            endy = 265
             winnerX()
         }
     } else if (moves[2][0] === moves[2][1] && moves[2][1] === moves[2][2]) {
         console.log(moves[2][0])
-        startx = 0
-starty = 442
-endx = 530
-endy = 442
+
         if ((moves[2][0]) === "O") {
+            startx = 0
+            starty = 442
+            endx = 530
+            endy = 442
             winnerO()
+
         } else if ((moves[2][0]) === "X") {
+            startx = 0
+            starty = 442
+            endx = 530
+            endy = 442
             winnerX()
         }
     }
     //Vertical
     else if (moves[0][0] === moves[1][0] && moves[1][0] === moves[2][0]) {
         console.log(moves[0][0])
-        startx = 88
-starty = 0
-endx = 88
-endy = 530
+
         if ((moves[0][0]) === "O") {
+            startx = 88
+            starty = 0
+            endx = 88
+            endy = 530
             winnerO()
         } else if ((moves[0][0]) === "X") {
+            startx = 88
+            starty = 0
+            endx = 88
+            endy = 530
             winnerX()
         }
     } else if (moves[0][1] === moves[1][1] && moves[1][1] === moves[2][1]) {
         console.log(moves[0][1])
-        startx = 265
-starty = 0
-endx = 265
-endy = 530
+
         if ((moves[0][1]) === "O") {
+            startx = 265
+            starty = 0
+            endx = 265
+            endy = 530
             winnerO()
         } else if ((moves[0][1]) === "X") {
+            startx = 265
+            starty = 0
+            endx = 265
+            endy = 530
             winnerX()
         }
     } else if (moves[0][2] === moves[1][2] && moves[1][2] === moves[2][2]) {
         console.log(moves[0][2])
-        startx = 442
-starty = 0
-endx = 442
-endy = 530
+
         if ((moves[0][2]) === "O") {
+            startx = 442
+            starty = 0
+            endx = 442
+            endy = 530
             winnerO()
         } else if ((moves[0][2]) === "X") {
+            startx = 442
+            starty = 0
+            endx = 442
+            endy = 530
             winnerX()
         }
     }
     //Slanting
     else if (moves[0][0] === moves[1][1] && moves[1][1] === moves[2][2]) {
         console.log(moves[0][0])
-        startx = 0
-starty = 0
-endx = 530
-endy = 530
+
         if ((moves[0][0]) === "O") {
+            startx = 0
+            starty = 0
+            endx = 530
+            endy = 530
             winnerO()
         } else if ((moves[0][0]) === "X") {
+            startx = 0
+            starty = 0
+            endx = 530
+            endy = 530
             winnerX()
         }
     } else if (moves[0][2] === moves[1][1] && moves[1][1] === moves[2][0]) {
         console.log(moves[0][2])
-        startx = 530
-starty = 0
-endx = 0
-endy = 530
+
         if ((moves[0][2]) === "O") {
+            startx = 530
+            starty = 0
+            endx = 0
+            endy = 530
             winnerO()
         } else if ((moves[0][2]) === "X") {
+            startx = 530
+            starty = 0
+            endx = 0
+            endy = 530
             winnerX()
         }
     } else if (movecounter > 9) {
@@ -251,7 +294,6 @@ endy = 530
         
         displayH()
     }
-    draw()
 }
 
 //initializes when gameboard are clicked
@@ -504,6 +546,10 @@ function draw() {
 }
 
 function undraw(){
+startx = 0
+starty = 0
+endx = 0
+endy = 0
     const canvass = document.getElementById("canvass")
     const context = canvass.getContext("2d")
 

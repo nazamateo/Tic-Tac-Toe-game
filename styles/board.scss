@@ -29,6 +29,7 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+            
             animation: flash; /* referring directly to the animation's @keyframe declaration */
             animation-duration: 2s; /* don't forget to set a duration! */
             -webkit-animation: glow 1s ease-in-out infinite alternate;
