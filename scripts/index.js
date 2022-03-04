@@ -1,3 +1,4 @@
+
 var moves = [
     [" ", " ", " "],
     [" ", " ", " "],
@@ -51,6 +52,12 @@ var undoredoclick = 0
 var savethisundoredo
 var recentclicked
 
+var startx
+var starty
+var endx
+var endy
+
+
 function undoA() {
     if (undoredoclick !== 0) {
         alert("invalid")
@@ -62,18 +69,18 @@ function undoA() {
         console.log(savethisundoredo)
         movesundoredo.push(move)
         console.log(movesundoredo)
-        recentclicked.innerHTML=""
+        recentclicked.innerHTML = ""
         undoredoclick = 1
         movecounter--
     }
 }
 
 function redoA() {
-    if (undoredoclick  === 1) {
+    if (undoredoclick === 1) {
         const hist = document.getElementById("history")
         hist.appendChild(savethisundoredo)
         console.log(savethisundoredo)
-        recentclicked.innerHTML=move
+        recentclicked.innerHTML = move
         undoredoclick = 2
         movecounter++
 
@@ -98,7 +105,6 @@ function displayH() {
     h.textContent = moves[2][1]
     i.textContent = moves[2][2]
     console.log("displayme")
-
 }
 
 function hideH() {
@@ -107,7 +113,6 @@ function hideH() {
     redo.style.display = "block"
     undo.style.display = "block"
     console.log("imhidden")
-
 }
 
 
@@ -144,6 +149,10 @@ function gameWinner() {
     //Horizontal
     if (moves[0][0] === moves[0][1] && moves[0][1] === moves[0][2]) {
         console.log(moves[0][0])
+startx = 0
+starty = 88
+endx = 530
+endy = 88
         if ((moves[0][0]) === "O") {
             winnerO()
         } else if ((moves[0][0]) === "X") {
@@ -151,6 +160,10 @@ function gameWinner() {
         }
     } else if (moves[1][0] === moves[1][1] && moves[1][1] === moves[1][2]) {
         console.log(moves[1][0])
+        startx = 0
+starty = 265
+endx = 530
+endy = 265
         if ((moves[1][0]) === "O") {
             winnerO()
         } else if ((moves[1][0]) === "X") {
@@ -158,6 +171,10 @@ function gameWinner() {
         }
     } else if (moves[2][0] === moves[2][1] && moves[2][1] === moves[2][2]) {
         console.log(moves[2][0])
+        startx = 0
+starty = 442
+endx = 530
+endy = 442
         if ((moves[2][0]) === "O") {
             winnerO()
         } else if ((moves[2][0]) === "X") {
@@ -167,6 +184,10 @@ function gameWinner() {
     //Vertical
     else if (moves[0][0] === moves[1][0] && moves[1][0] === moves[2][0]) {
         console.log(moves[0][0])
+        startx = 88
+starty = 0
+endx = 88
+endy = 530
         if ((moves[0][0]) === "O") {
             winnerO()
         } else if ((moves[0][0]) === "X") {
@@ -174,6 +195,10 @@ function gameWinner() {
         }
     } else if (moves[0][1] === moves[1][1] && moves[1][1] === moves[2][1]) {
         console.log(moves[0][1])
+        startx = 265
+starty = 0
+endx = 265
+endy = 530
         if ((moves[0][1]) === "O") {
             winnerO()
         } else if ((moves[0][1]) === "X") {
@@ -181,6 +206,10 @@ function gameWinner() {
         }
     } else if (moves[0][2] === moves[1][2] && moves[1][2] === moves[2][2]) {
         console.log(moves[0][2])
+        startx = 442
+starty = 0
+endx = 442
+endy = 530
         if ((moves[0][2]) === "O") {
             winnerO()
         } else if ((moves[0][2]) === "X") {
@@ -190,6 +219,10 @@ function gameWinner() {
     //Slanting
     else if (moves[0][0] === moves[1][1] && moves[1][1] === moves[2][2]) {
         console.log(moves[0][0])
+        startx = 0
+starty = 0
+endx = 530
+endy = 530
         if ((moves[0][0]) === "O") {
             winnerO()
         } else if ((moves[0][0]) === "X") {
@@ -197,6 +230,10 @@ function gameWinner() {
         }
     } else if (moves[0][2] === moves[1][1] && moves[1][1] === moves[2][0]) {
         console.log(moves[0][2])
+        startx = 530
+starty = 0
+endx = 0
+endy = 530
         if ((moves[0][2]) === "O") {
             winnerO()
         } else if ((moves[0][2]) === "X") {
@@ -211,8 +248,10 @@ function gameWinner() {
         //display prev and next function
         var displayArray = (moveshistory.length) - 1 //8
         hcounter = JSON.parse(JSON.stringify(displayArray)) //8
+        
         displayH()
     }
+    draw()
 }
 
 //initializes when gameboard are clicked
@@ -221,7 +260,6 @@ function gamecell() {
     gameBoard.onclick = e => {
         console.log(e.target); // to get the element
         var clicked = e.target
-
         //identifies who moves first
         if ((clicked.innerHTML.length) > 0) {
             alert("Invalid move")
@@ -243,9 +281,42 @@ function gamecell() {
             movecounter++
             console.log(`movecounter: ${movecounter}`)
 
+            clicked.animate([
+                // keyframes
+                {
+                    transform: 'scale(0.5)',
+                    opacity: '.5'
+                },
+                {
+                    transform: 'scale(0.6)',
+                    opacity: '0.6'
+                },
+                {
+                    transform: 'scale(0.7)',
+                    opacity: '0.7'
+                },
+                {
+                    transform: 'scale(0.8)',
+                    opacity: '0.8'
+                },
+                {
+                    transform: 'scale(0.9)',
+                    opacity: '0.9'
+                },
+                {
+                    transform: 'scale(1)',
+                    opacity: '1'
+                }
+
+            ], {
+                // timing options
+                duration: 400,
+
+            });
+
             //adds the move to gameboard cell
             clicked.innerHTML = move
-            recentclicked=clicked
+            recentclicked = clicked
             console.log(recentclicked)
             var cellid = clicked.id
             var cellidi = cellid.charAt(1)
@@ -262,14 +333,19 @@ function gamecell() {
                         moveshistory.push(JSON.parse(JSON.stringify(moves)))
                         console.log(moveshistory)
 
+                        if (move === "X") {
+                            clicked.style.color = "red"
+                        } else if (move === "O") {
+                            clicked.style.color = 'blue'
+                        }
                         //record and display moveshistory
-                        const newP = document.createElement("p")
+                        const newP = document.createElement("h2")
                         newP.textContent = `${movecounter-1}. ${move} @ ${historylist[i][j]}`
                         console.log(newP)
                         const hist = document.getElementById("history")
                         console.log(hist)
                         hist.appendChild(newP)
-                        movesundoredo=[]
+                        movesundoredo = []
                         undoredoclick = 0
                     }
                 }
@@ -288,7 +364,10 @@ function gamecell() {
                         }*/
 
             //identify winner
-            gameWinner()
+
+            if (movecounter > 5) {
+                gameWinner()
+            }
         }
     }
 }
@@ -313,7 +392,8 @@ function gameReset() {
     i.textContent = ""
     const hist = document.getElementById("history")
     hist.innerHTML = ""
-    hideH()
+    undraw()
+    hideH() 
 }
 
 function clearScore() {
@@ -342,6 +422,7 @@ function prev() {
         console.log(typeof hcounter)
         console.log(hcounter) //8
         console.log(`this will be displayed ${moveshistory[hcounter]}`)
+        undraw()
     }
 }
 
@@ -362,5 +443,73 @@ function nexx() {
         console.log(typeof hcounter)
         console.log(hcounter) //8
         console.log(`this will be displayed ${moveshistory[hcounter]}`)
+        undraw()
     }
+}
+
+
+function draw() {
+    const canvass = document.getElementById("canvass")
+    const ctx = canvass.getContext("2d")
+
+    canvass.animate([
+        // keyframes
+        {
+            transform: 'scale(0.5)',
+            opacity: '.5'
+        },
+        {
+            transform: 'scale(0.6)',
+            opacity: '0.6'
+        },
+        {
+            transform: 'scale(0.7)',
+            opacity: '0.7'
+        },
+        {
+            transform: 'scale(0.8)',
+            opacity: '0.8'
+        },
+        {
+            transform: 'scale(0.9)',
+            opacity: '0.9'
+        },
+        {
+            transform: 'scale(1)',
+            opacity: '1'
+        }
+
+    ], {
+        // timing options
+        duration: 400,
+
+    });
+
+
+
+
+    // set line stroke and line width
+    ctx.strokeStyle = 'black'
+    ctx.lineWidth = 8
+
+    // draw a red line
+    ctx.beginPath();
+    ctx.moveTo(startx, starty)
+    ctx.lineTo(endx, endy)
+    ctx.lineCap = "round"
+    ctx.stroke()
+    console.log("draw")
+    const savage = document.getElementById("savage")
+    savage.style.zIndex = "5"
+}
+
+function undraw(){
+    const canvass = document.getElementById("canvass")
+    const context = canvass.getContext("2d")
+
+    
+    context.clearRect(0, 0, canvass.width, canvass.height)
+    console.log("undraw")
+    const savage = document.getElementById("savage")
+    savage.style.zIndex = "-1"
 }

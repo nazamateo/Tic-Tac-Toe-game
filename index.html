@@ -9,22 +9,23 @@
     <meta name="description" content="simpleticktacktoegame">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
     <video autoplay muted loop id="myVideo">
-        <source src="/videos/Arcade - 106981.mp4"
-            type="video/mp4"></video>
+        <source src="/videos/Again - 105289.mp4" type="video/mp4"></video>
     <section class="board">
-        <div class="cell" id="i0j0" ></div>
-        <div class="cell" id="i0j1" ></div>
-        <div class="cell" id="i0j2" ></div>
-        <div class="cell" id="i1j0" ></div>
-        <div class="cell" id="i1j1" ></div>
-        <div class="cell" id="i1j2" ></div>
-        <div class="cell" id="i2j0" ></div>
-        <div class="cell" id="i2j1" ></div>
-        <div class="cell" id="i2j2" ></div>
+        <div class="cell" id="i0j0"></div>
+        <div class="cell" id="i0j1"></div>
+        <div class="cell" id="i0j2"></div>
+        <div class="cell" id="i1j0"></div>
+        <div class="cell" id="i1j1"></div>
+        <div class="cell" id="i1j2"></div>
+        <div class="cell" id="i2j0"></div>
+        <div class="cell" id="i2j1"></div>
+        <div class="cell" id="i2j2"></div>
     </section>
 
     <section class="scoreboard">
@@ -41,38 +42,40 @@
             <h1 class="score2" id="score2"></h1>
         </div>
     </section>
-
-    <section class="history" id="history">
-
-
-
-
-
+    <section class="historycontainer">
+        <section class="historyname" id="historyname">
+            <h1>GAME HISTORY</h1>
+        </section>
+        <section class="history" id="history"></section>
     </section>
 
     <section class="buttons">
-    <br><button class="button" id="reset" onclick="gameReset()">NEW GAME</button><br>
-    <button class="button" id="clearscore" onclick="clearScore()">RESET SCORE</button><br>
+        <br><button class="button" id="reset" onclick="gameReset()">NEW GAME</button><br>
+        <button class="button" id="clearscore" onclick="clearScore()"><i class="material-icons">refresh</i>RESET
+            SCORE</button><br>
 
-    <div class="btn-group" data-toggle="buttons">
-        <input type="radio" id="one" name="test-toggle" value="O" checked="checked">
-        <label for="one" class="btn btn-default-toggle-ghost active">
-          O first
-        </label>
-        <input type="radio" id="two" name="test-toggle" value="X">
-        <label for="two" class="btn btn-default-toggle-ghost active">
-          X first
-        </label>
-      </div>
-
-      <button class="button" id="previous" onclick="prev()">prev</button><br>
-      <button class="button" id="next" onclick="nexx()">nexx</button><br>
-      
-    <button class="button" id="undo" onclick="undoA()">undo</button><br>
-    <button class="button" id="redo" onclick="redoA()">redo</button><br>
-
+        <div class="btn-group" data-toggle="buttons">
+            <input type="radio" id="one" name="test-toggle" value="O" checked="checked">
+            <label for="one" class="btn btn-default-toggle-ghost active">
+                O first
+            </label>
+            <input type="radio" id="two" name="test-toggle" value="X">
+            <label for="two" class="btn btn-default-toggle-ghost active">
+                X first
+            </label>
+        </div>
     </section>
-
+    <section class="buttons2">
+        <button class="button" id="previous" onclick="prev()"><i class="material-icons">arrow_back</i></button><br>
+        <button class="button" id="next" onclick="nexx()"><i class="material-icons">arrow_forward</i></button><br>
+        <button class="button" id="undo" onclick="undoA()"><i
+                class="material-icons">subdirectory_arrow_left</i></button><br>
+        <button class="button" id="redo" onclick="redoA()"><i
+                class="material-icons">subdirectory_arrow_right</i></button><br>
+    </section>
+<section class="savage" id="savage">
+    <canvas class="canvass" id="canvass" height="530" width="530"></canvas>
+</section>
     <script src="scripts/index.js" async defer></script>
 </body>
 

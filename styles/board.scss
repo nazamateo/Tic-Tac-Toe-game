@@ -9,8 +9,8 @@ body {
         position: relative;
         top: 10vh;
         display: grid;
-        width: 30vw;
-        height: 30vw;
+        width: 35vw;
+        height: 35vw;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
         justify-content: stretch;
@@ -29,7 +29,22 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: flash; /* referring directly to the animation's @keyframe declaration */
+            animation-duration: 2s; /* don't forget to set a duration! */
+            -webkit-animation: glow 1s ease-in-out infinite alternate;
+            -moz-animation: glow 1s ease-in-out infinite alternate;
+            animation: glow 1s ease-in-out infinite alternate;
+
         }
+        
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #9b9393, 0 0 40px #9b9393, 0 0 50px #9b9393, 0 0 60px #9b9393, 0 0 70px #9b9393;
+    }
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #9b9393, 0 0 40px #9b9393, 0 0 50px #9b9393, 0 0 60px #9b9393, 0 0 70px #9b9393, 0 0 80px #9b9393;
+    }
+  }
 
         #i0j0,
         #i0j1,
@@ -57,39 +72,56 @@ body {
     }
 
     .scoreboard {
+        z-index: 2;
         position: relative;
-        bottom: 20vh;
+        bottom:25vh;
         right: 35vw;
         display: grid;
-        width: 25vw;
-        height: 8vw;
+        width: 10.2vw;
+        height: 5vw;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: (1fr);
         justify-content: stretch;
         align-content: stretch;
         margin-left: auto;
         margin-right: auto;
-        background-color: white;
-
-
+        background-color: transparent;
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 4px );
+        -webkit-backdrop-filter: blur( 4px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
 
         .scorecontainer {
             display: flex;
             flex-direction: column;
             justify-content: center;
-
             text-align: center;
+   
+
 
             p {
-                font-size: larger;
-                color: white;
+                font-size: 3vh;
+                mix-blend-mode: screen; /* This makes the cutout text possible */
+                
             }
 
             h1 {
-                font-size: 5vh;
-                color: cyan;
-
+                font-size: 3vh;
+                mix-blend-mode: screen; /* This makes the cutout text possible */
+                animation: flash; /* referring directly to the animation's @keyframe declaration */
+                animation-duration: 2s; /* don't forget to set a duration! */
             }
         }
     }
+}
+
+.savage{
+    position: absolute;
+    top: 10vh;
+    left: 32.5vw;
+    display: block;
+    margin: auto;
+    z-index: -1;
 }

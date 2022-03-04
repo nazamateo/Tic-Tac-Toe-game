@@ -1,15 +1,38 @@
 
-    .history {
+    .historycontainer {
         position: absolute;
         top: 10vh;
         right: 10vw;
         display: block;
-        width: 15vw;
+        width: 14vw;
         height: 20vw;
         margin: auto;
-        background-color: pink;
-
-        p{
-            color:cyan;
+        background-color: transparent;
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 4px );
+        -webkit-backdrop-filter: blur( 4px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        .historyname{
+            position: absolute;
+            display: block;
+            z-index: 2;
+            width: 15vw;
+            color: white;
+            h1{
+                text-align: center;
+            }
         }
+
+        .history{
+            position: relative;
+            top: 5vh;
+            h2{
+                font-size: large;
+                color:whitesmoke;
+            }
+
+        }
+       
     }

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Merienda+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Maitree:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap");
 body {
   display: block;
   height: 100vh;
@@ -8,8 +9,8 @@ body .board {
   position: relative;
   top: 10vh;
   display: grid;
-  width: 30vw;
-  height: 30vw;
+  width: 35vw;
+  height: 35vw;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   justify-content: stretch;
@@ -28,6 +29,21 @@ body .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: flash;
+  /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s;
+  /* don't forget to set a duration! */
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #9b9393, 0 0 40px #9b9393, 0 0 50px #9b9393, 0 0 60px #9b9393, 0 0 70px #9b9393;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #9b9393, 0 0 40px #9b9393, 0 0 50px #9b9393, 0 0 60px #9b9393, 0 0 70px #9b9393, 0 0 80px #9b9393;
+  }
 }
 body .board #i0j0,
 body .board #i0j1,
@@ -50,19 +66,26 @@ body .board #i2j2 {
   border-right: 0px;
 }
 body .scoreboard {
+  z-index: 2;
   position: relative;
-  bottom: 20vh;
+  bottom: 25vh;
   right: 35vw;
   display: grid;
-  width: 25vw;
-  height: 8vw;
+  width: 10.2vw;
+  height: 5vw;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   justify-content: stretch;
   align-content: stretch;
   margin-left: auto;
   margin-right: auto;
-  background-color: white;
+  background-color: transparent;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 body .scoreboard .scorecontainer {
   display: flex;
@@ -71,12 +94,27 @@ body .scoreboard .scorecontainer {
   text-align: center;
 }
 body .scoreboard .scorecontainer p {
-  font-size: larger;
-  color: white;
+  font-size: 3vh;
+  mix-blend-mode: screen;
+  /* This makes the cutout text possible */
 }
 body .scoreboard .scorecontainer h1 {
-  font-size: 5vh;
-  color: cyan;
+  font-size: 3vh;
+  mix-blend-mode: screen;
+  /* This makes the cutout text possible */
+  animation: flash;
+  /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s;
+  /* don't forget to set a duration! */
+}
+
+.savage {
+  position: absolute;
+  top: 10vh;
+  left: 32.5vw;
+  display: block;
+  margin: auto;
+  z-index: -1;
 }
 
 /*
@@ -92,6 +130,7 @@ body .scoreboard .scorecontainer h1 {
 * {
   margin: 0;
   background-color: transparent;
+  overflow: hidden;
 }
 
 /*
@@ -112,7 +151,8 @@ html, body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Bubblegum Sans", cursive;
+  color: white;
 }
 
 /*
@@ -149,39 +189,27 @@ p, h1, h2, h3, h4, h5, h6 {
   top: 10vh;
   left: 10vw;
   display: block;
-  width: 10vw;
+  width: 10.2vw;
   height: auto;
+  background-color: transparent;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.buttons #reset, .buttons #clearscore, .buttons #previous, .buttons #next, .buttons #undo, .buttons #redo {
+.buttons #reset, .buttons #clearscore {
   display: block;
   margin: auto;
   cursor: pointer;
   color: white;
-}
-.buttons #previous {
-  display: none;
-  position: fixed;
-  bottom: 20vh;
-  left: 40vw;
-}
-.buttons #next {
-  display: none;
-  position: fixed;
-  bottom: 20vh;
-  left: 57vw;
-}
-.buttons #undo {
-  position: fixed;
-  bottom: 20vh;
-  left: 40vw;
-}
-.buttons #redo {
-  position: fixed;
-  bottom: 20vh;
-  left: 57vw;
+  z-index: 3;
 }
 .buttons .btn {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-bottom: 0;
   text-align: center;
   cursor: pointer;
@@ -193,11 +221,12 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: 13px;
   font-weight: 500;
   border-radius: 0;
-  height: 30px;
   padding-bottom: 7px;
 }
 .buttons .btn-default-toggle-ghost,
 .buttons .btn-default-toggle-ghost:focus {
+  display: flex;
+  justify-content: center;
   background: transparent;
   border: 1px solid rgba(160, 160, 160, 0.6);
   color: white;
@@ -212,7 +241,7 @@ p, h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 .buttons [type=radio]:checked + .btn-default-toggle-ghost {
-  background: black;
+  background: transparent;
 }
 .buttons [type=radio]:checked + .btn-default-toggle-ghost:after {
   content: "";
@@ -228,18 +257,59 @@ p, h1, h2, h3, h4, h5, h6 {
   /*for removing the extra border between the buttons*/
 }
 
-.history {
+.buttons2 {
+  position: relative;
+  margin: auto;
+  display: flex;
+  width: 40vw;
+  height: auto;
+}
+.buttons2 #previous, .buttons2 #next, .buttons2 #undo, .buttons2 #redo {
+  display: block;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  color: whitesmoke;
+}
+.buttons2 #previous {
+  display: none;
+}
+.buttons2 #next {
+  display: none;
+}
+.historycontainer {
   position: absolute;
   top: 10vh;
   right: 10vw;
   display: block;
-  width: 15vw;
+  width: 14vw;
   height: 20vw;
   margin: auto;
-  background-color: pink;
+  background-color: transparent;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.history p {
-  color: cyan;
+.historycontainer .historyname {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  width: 15vw;
+  color: white;
+}
+.historycontainer .historyname h1 {
+  text-align: center;
+}
+.historycontainer .history {
+  position: relative;
+  top: 5vh;
+}
+.historycontainer .history h2 {
+  font-size: large;
+  color: whitesmoke;
 }
 
 #myVideo {
