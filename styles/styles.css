@@ -15,7 +15,7 @@ body .board {
   justify-content: stretch;
   align-content: stretch;
   margin: auto;
-  background-color: black;
+  background-color: transparent;
 }
 body .board .cell {
   cursor: pointer;
@@ -91,7 +91,7 @@ body .scoreboard .scorecontainer h1 {
 */
 * {
   margin: 0;
-  background-color: black;
+  background-color: transparent;
 }
 
 /*
@@ -240,6 +240,20 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 .history p {
   color: cyan;
+}
+
+#myVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=styles.css.map */

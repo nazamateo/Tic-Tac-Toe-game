@@ -1,8 +1,10 @@
 var moves = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""]
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]
 ]
+
+var movesundoredo = []
 
 var historylist = [
     ["top-left", "top-mid", "top-right"],
@@ -11,19 +13,18 @@ var historylist = [
 ]
 
 var moveshistory = []
-
 var move
 var movecounter = 1
 var score1 = 0 //O
 var score2 = 0 //X
 var scoretie = 0 //tie
 var prevvv = document.getElementById("previous")
-console.log(prevvv)
 var nexxx = document.getElementById("next")
-console.log(nexxx)
-
 var undo = document.getElementById("undo")
 var redo = document.getElementById("redo")
+
+
+
 
 var a = document.getElementById("i0j0")
 var b = document.getElementById("i0j1")
@@ -45,19 +46,48 @@ g.onclick = gamecell()
 h.onclick = gamecell()
 i.onclick = gamecell()
 
+//undoredo
+var undoredoclick = 0
+var savethisundoredo
+var recentclicked
+
+function undoA() {
+    if (undoredoclick !== 0) {
+        alert("invalid")
+    } else if (undoredoclick === 0) {
+        const hist = document.getElementById("history")
+        savethisundoredo = hist.lastChild //save this
+        hist.removeChild(hist.lastChild);
+        console.log(hist)
+        console.log(savethisundoredo)
+        movesundoredo.push(move)
+        console.log(movesundoredo)
+        recentclicked.innerHTML=""
+        undoredoclick = 1
+        movecounter--
+    }
+}
+
+function redoA() {
+    if (undoredoclick  === 1) {
+        const hist = document.getElementById("history")
+        hist.appendChild(savethisundoredo)
+        console.log(savethisundoredo)
+        recentclicked.innerHTML=move
+        undoredoclick = 2
+        movecounter++
+
+    } else {
+        alert("invalid")
+    }
+}
+
 
 function displayH() {
     prevvv.style.display = "block"
     nexxx.style.display = "block"
     redo.style.display = "none"
     undo.style.display = "none"
-    console.log("displayme")
-}
-
-function hideH() {
-    prevvv.style.display = "none"
-    nexxx.style.display = "none"
-    console.log("imhidden")
     a.textContent = moves[0][0]
     b.textContent = moves[0][1]
     c.textContent = moves[0][2]
@@ -67,8 +97,18 @@ function hideH() {
     g.textContent = moves[2][0]
     h.textContent = moves[2][1]
     i.textContent = moves[2][2]
+    console.log("displayme")
+
 }
 
+function hideH() {
+    prevvv.style.display = "none"
+    nexxx.style.display = "none"
+    redo.style.display = "block"
+    undo.style.display = "block"
+    console.log("imhidden")
+
+}
 
 
 //adds points to O
@@ -205,6 +245,8 @@ function gamecell() {
 
             //adds the move to gameboard cell
             clicked.innerHTML = move
+            recentclicked=clicked
+            console.log(recentclicked)
             var cellid = clicked.id
             var cellidi = cellid.charAt(1)
             var cellidinum = parseInt(cellidi)
@@ -216,18 +258,35 @@ function gamecell() {
                         moves[i][j] = move
                         console.log(moves[i][j])
                         console.log(moves)
+                        ///save current gameboard into array
+                        moveshistory.push(JSON.parse(JSON.stringify(moves)))
+                        console.log(moveshistory)
+
+                        //record and display moveshistory
                         const newP = document.createElement("p")
                         newP.textContent = `${movecounter-1}. ${move} @ ${historylist[i][j]}`
                         console.log(newP)
                         const hist = document.getElementById("history")
                         console.log(hist)
                         hist.appendChild(newP)
-                        ///save current gameboard into array
-                        moveshistory.push(JSON.parse(JSON.stringify(moves)))
-                        console.log(moveshistory)
+                        movesundoredo=[]
+                        undoredoclick = 0
                     }
                 }
             }
+            /** 
+                        for (var i = 0; i < moves.length; i++) {
+                            for (var j = 0; j < moves[i].length; j++) {
+                                if (i === cellidinum && j === cellidjnum) {
+                                    movesundoredo[i][j] = move
+                                    ///save current gameboard into array redoundo
+                                    undoredopushpop.push(JSON.parse(JSON.stringify(movesundoredo)))
+                                    console.log(undoredopushpop)
+
+                                }
+                            }
+                        }*/
+
             //identify winner
             gameWinner()
         }
