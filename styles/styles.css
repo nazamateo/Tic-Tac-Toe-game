@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Merienda+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Maitree:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 body {
   display: block;
   height: 100vh;
@@ -314,11 +315,15 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #myVideo {
   position: absolute;
+  width: 100vw;
+  height: 150vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   -o-transition: all 1s;
